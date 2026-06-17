@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import { CHIP_AMOUNTS } from '../types';
+import CustomChipModal from './CustomChipModal';
 
 interface ChipGridProps {
   activeName: string;
@@ -8,11 +10,13 @@ interface ChipGridProps {
 }
 
 export default function ChipGrid({ activeName, canUndo, onAdd, onUndo }: ChipGridProps) {
+  const [showCustom, setShowCustom] = useState(false);
+
   return (
     <div className="chip-section">
       <div className="chip-label-row">
         <span className="label-caps">Add to {activeName}</span>
-        <span className="chip-hint">tap to combine · e.g. 4 + 1</span>
+        <span className="chip-hint">tap to combine · e.g. 5 + 1</span>
       </div>
       <div className="chip-grid">
         {CHIP_AMOUNTS.map((amt) => (
@@ -27,6 +31,15 @@ export default function ChipGrid({ activeName, canUndo, onAdd, onUndo }: ChipGri
         ))}
         <button
           type="button"
+          className="chip chip-x"
+          onClick={() => setShowCustom(true)}
+          aria-haspopup="dialog"
+          aria-label="Add a custom amount"
+        >
+          +X
+        </button>
+        <button
+          type="button"
           className="chip chip-undo"
           onClick={onUndo}
           disabled={!canUndo}
@@ -35,6 +48,17 @@ export default function ChipGrid({ activeName, canUndo, onAdd, onUndo }: ChipGri
           ↩
         </button>
       </div>
+
+      {showCustom && (
+        <CustomChipModal
+          playerName={activeName}
+          onConfirm={(amt) => {
+            onAdd(amt);
+            setShowCustom(false);
+          }}
+          onClose={() => setShowCustom(false)}
+        />
+      )}
     </div>
   );
 }
