@@ -561,23 +561,43 @@ body:has(.app-desktop) {
   }
 }
 
-/* Desktop dock: pills + chips on one row */
+/* Desktop dock: a tidy scoreboard column + chip grid, centered under the board */
 .app-desktop .control-dock {
   flex-direction: row;
-  align-items: flex-end;
-  gap: 16px;
+  align-items: stretch;
+  gap: 14px;
+  width: 100%;
+  max-width: 840px;
+  margin: 0 auto;
 }
 
+/* Player pills stack into a left-hand scoreboard column. */
 .app-desktop .player-selector {
-  flex: none;
+  flex: 0 0 220px;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .app-desktop .player-pill {
-  min-width: 110px;
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  min-width: 0;
+}
+
+.app-desktop .player-name {
+  font-size: 14px;
+}
+
+.app-desktop .player-score {
+  font-size: 20px;
 }
 
 .app-desktop .chip-section {
   flex: 1;
+  min-width: 0;
 }
 
 /* ===================== Setup screen ===================== */
