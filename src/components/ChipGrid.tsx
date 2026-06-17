@@ -16,7 +16,6 @@ export default function ChipGrid({ activeName, canUndo, onAdd, onUndo }: ChipGri
     <div className="chip-section">
       <div className="chip-label-row">
         <span className="label-caps">Add to {activeName}</span>
-        <span className="chip-hint">tap to combine · e.g. 5 + 1</span>
       </div>
       <div className="chip-grid">
         {CHIP_AMOUNTS.map((amt) => (

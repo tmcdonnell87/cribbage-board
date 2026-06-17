@@ -337,11 +337,6 @@ body:has(.app-desktop) {
   padding: 0 2px;
 }
 
-.chip-hint {
-  font-size: 10px;
-  color: var(--faint-3);
-}
-
 .chip-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
