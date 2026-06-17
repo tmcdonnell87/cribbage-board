@@ -71,6 +71,10 @@ export function gameReducer(state: AppState, action: Action): AppState {
     }
 
     case 'ADD_TO': {
+      // First-across is settled once decided — ignore further pegging so the
+      // winner can't flip (Undo still reopens the game).
+      if (game.winMode === 'first' && game.decided) return state;
+
       const players = game.players.map((p) => ({ ...p }));
       const p = players[action.pi];
       if (!p) return state;
@@ -79,10 +83,10 @@ export function gameReducer(state: AppState, action: Action): AppState {
       p.prev = p.score;
       p.score = clamp(p.score + action.amount, 0, ceiling);
 
-      // First-across: the first player to reach the target wins immediately.
+      // First-across: the first player to reach the target wins immediately and locks in.
       let decided = game.decided;
-      if (game.winMode === 'first' && players.some((pl) => pl.score >= game.target)) {
-        decided = computeDecided(players);
+      if (game.winMode === 'first' && p.score >= game.target) {
+        decided = { idx: action.pi, max: p.score, tie: false };
       }
 
       return {

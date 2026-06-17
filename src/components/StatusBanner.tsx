@@ -1,5 +1,12 @@
 import { Game } from '../types';
 
+/** "A", "A & B", "A, B & C" — for naming the players in a banner. */
+function nameList(names: string[]): string {
+  if (names.length <= 1) return names[0] ?? '';
+  if (names.length === 2) return `${names[0]} & ${names[1]}`;
+  return `${names.slice(0, -1).join(', ')} & ${names[names.length - 1]}`;
+}
+
 interface StatusBannerProps {
   game: Game;
   onEndHand: () => void;
@@ -20,11 +27,14 @@ export default function StatusBanner({ game, onEndHand, onPlayOn, onNewGame }: S
   if (decided) {
     const sorted = [...players].sort((a, b) => b.score - a.score);
     if (decided.tie) {
+      const tiedCount = players.filter((p) => p.score === decided.max).length;
       return (
         <div className="banner banner-result" role="status">
           <div className="banner-text">
             <div className="banner-title">Tied at {decided.max}</div>
-            <div className="banner-body">Two players at {decided.max} — keep pegging to settle it.</div>
+            <div className="banner-body">
+              {tiedCount} players at {decided.max} — keep pegging to settle it.
+            </div>
           </div>
           <button type="button" className="banner-btn banner-btn-ghost" onClick={onPlayOn}>
             Play on
@@ -62,7 +72,7 @@ export default function StatusBanner({ game, onEndHand, onPlayOn, onNewGame }: S
       const names = crossers.map((p) => p.name);
       const who =
         crossers.length > 1
-          ? `${names.join(' & ')} are both past ${target}`
+          ? `${nameList(names)} are past ${target}`
           : `${names[0]} is past ${target}`;
       return (
         <div className="banner banner-finish" role="status">

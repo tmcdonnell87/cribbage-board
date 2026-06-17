@@ -102,9 +102,14 @@ export function computeBoard(
   const pegPos: PegPos = (score, lane) => {
     const len = Math.max(0, Math.min(total, (Math.min(score, target) / target) * total));
     const p = path.getPointAtLength(len);
-    const q = path.getPointAtLength(Math.min(total, len + 1.5));
-    let dx = q.x - p.x;
-    let dy = q.y - p.y;
+    // Central-difference tangent: sample both neighbours so the travel
+    // direction stays defined even at the very end of the path. (A forward-only
+    // sample collapses to zero at len === total, which would stack every lane's
+    // parked peg on the centerline — exactly the finish-the-hand case.)
+    const a = path.getPointAtLength(Math.min(total, len + 1.5));
+    const b = path.getPointAtLength(Math.max(0, len - 1.5));
+    let dx = a.x - b.x;
+    let dy = a.y - b.y;
     const m = Math.hypot(dx, dy) || 1;
     dx /= m;
     dy /= m;
