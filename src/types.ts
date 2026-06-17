@@ -47,7 +47,10 @@ export const defaultPlayerName = (i: number): string => `Player ${i + 1}`;
 export const CHIP_AMOUNTS = [1, 2, 3, 5, 10] as const;
 
 /** Absolute presets offered inside the custom (+X) modal (each sets X). */
-export const CUSTOM_QUICK = [1, 2, 3, 4, 5, 10, 15, 20, 25] as const;
+export const CUSTOM_QUICK = [5, 10, 15, 20, 25] as const;
+
+/** Relative adjusters in the custom modal (each adds to X). */
+export const CUSTOM_ADDERS = [5, 10] as const;
 
 /** Headroom past the target while finishing a hand (prototype = 60). */
 export const FINISH_HEADROOM = 60;

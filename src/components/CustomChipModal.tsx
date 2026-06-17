@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { CUSTOM_QUICK } from '../types';
+import { CUSTOM_QUICK, CUSTOM_ADDERS } from '../types';
 
 interface CustomChipModalProps {
   playerName: string;
@@ -63,25 +63,32 @@ export default function CustomChipModal({ playerName, onConfirm, onClose }: Cust
           </button>
         </div>
 
-        <div className="quick-grid">
-          {CUSTOM_QUICK.map((n) => (
-            <button
-              type="button"
-              key={n}
-              className={`quick-chip${n === x ? ' is-active' : ''}`}
-              onClick={() => setX(n)}
-            >
-              {n}
-            </button>
-          ))}
-          <button
-            type="button"
-            className="quick-chip quick-add"
-            aria-label="Add 5"
-            onClick={() => step(5)}
-          >
-            +5
-          </button>
+        <div className="quick-block">
+          <div className="quick-grid">
+            {CUSTOM_QUICK.map((n) => (
+              <button
+                type="button"
+                key={n}
+                className={`quick-chip${n === x ? ' is-active' : ''}`}
+                onClick={() => setX(n)}
+              >
+                {n}
+              </button>
+            ))}
+          </div>
+          <div className="quick-adders">
+            {CUSTOM_ADDERS.map((n) => (
+              <button
+                type="button"
+                key={n}
+                className="quick-chip quick-add"
+                aria-label={`Add ${n}`}
+                onClick={() => step(n)}
+              >
+                +{n}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="modal-actions">

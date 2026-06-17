@@ -473,9 +473,22 @@ body:has(.app-desktop) {
   font-variant-numeric: tabular-nums;
 }
 
+.quick-block {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
 .quick-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  gap: 7px;
+}
+
+/* Relative adders share a row, split to equal halves. */
+.quick-adders {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 7px;
 }
 
