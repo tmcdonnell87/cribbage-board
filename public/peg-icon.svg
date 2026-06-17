@@ -1,0 +1,21 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="96" fill="#6f4b30" />
+  <rect x="56" y="56" width="400" height="400" rx="60" fill="#efe6cf" />
+  <!-- serpentine lane guide -->
+  <path
+    d="M150,150 V362 a53,53 0 0 0 106,0 V150 a53,53 0 0 1 106,0 V362"
+    fill="none"
+    stroke="rgba(74,48,22,0.16)"
+    stroke-width="15"
+    stroke-linecap="round"
+  />
+  <!-- pegs -->
+  <circle cx="150" cy="205" r="22" fill="#d1402c" />
+  <circle cx="143" cy="198" r="7" fill="rgba(255,255,255,0.6)" />
+  <circle cx="256" cy="300" r="22" fill="#2f6f8f" />
+  <circle cx="249" cy="293" r="7" fill="rgba(255,255,255,0.6)" />
+  <circle cx="362" cy="180" r="22" fill="#4f9a4a" />
+  <circle cx="355" cy="173" r="7" fill="rgba(255,255,255,0.6)" />
+  <!-- leader ring -->
+  <circle cx="362" cy="180" r="34" fill="none" stroke="#d6a43a" stroke-width="7" />
+</svg>

@@ -85,6 +85,24 @@ the README's **"Board geometry"** section — copy those numbers exactly for bot
 
 ## Commands
 
-No build/lint/test tooling exists yet — establish it when scaffolding (the handoff suggests
-Vite). Update this section with the actual `dev` / `build` / `test` commands once the project
-is set up.
+The app is a React + Vite + TypeScript PWA (`vite-plugin-pwa` for the service worker/manifest).
+
+- `npm install` — install dependencies.
+- `npm run dev` — start the Vite dev server (http://localhost:5173).
+- `npm run build` — typecheck (`tsc --noEmit`) then production build to `dist/` (also emits the
+  service worker + `manifest.webmanifest`).
+- `npm run preview` — serve the production build (use to verify the installable/offline PWA).
+- `npm run typecheck` — strict TypeScript check, no emit.
+
+PWA icons are generated from `public/peg-icon.svg` via
+`npx @vite-pwa/assets-generator --preset minimal-2023 public/peg-icon.svg` (regenerate if the
+source SVG changes).
+
+### Code map
+- `src/types.ts` — state model + shared constants (player palette, chip amounts, headroom).
+- `src/game/reducer.ts` — `gameReducer` + actions (`NEW_GAME`/`SET_ACTIVE`/`ADD_TO`/`UNDO`/
+  `END_HAND`/`PLAY_ON`/`RESET`); `src/game/storage.ts` — localStorage persistence.
+- `src/board/geometry.ts` — serpentine path `d` strings, viewBoxes, and `computeBoard()` (peg
+  positioning via `getPointAtLength` + perpendicular lane offset); `src/board/Board.tsx` — SVG.
+- `src/components/` — `SetupScreen`, `Header`, `StatusBanner`, `PlayerSelector`, `ChipGrid`,
+  `ControlDock`; `src/App.tsx` — shell (setup vs counter, responsive mobile/desktop).
