@@ -34,6 +34,7 @@ export interface Game {
 export interface AppState {
   phase: Phase;
   game: Game | null;
+  names?: string[]; // last-used player names, remembered across new games
 }
 
 /** Fixed, index-based player palette (spec Design Tokens). */

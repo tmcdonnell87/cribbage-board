@@ -10,6 +10,7 @@ interface SetupConfig {
 
 interface SetupScreenProps {
   onStart: (config: SetupConfig) => void;
+  initialNames?: string[];
 }
 
 const WIN_HINT: Record<WinMode, string> = {
@@ -41,22 +42,20 @@ function Segmented<T extends string | number>({ options, value, onChange }: Segm
   );
 }
 
-export default function SetupScreen({ onStart }: SetupScreenProps) {
+export default function SetupScreen({ onStart, initialNames }: SetupScreenProps) {
   const [target, setTarget] = useState<Target>(120);
   const [count, setCount] = useState(2);
   const [winMode, setWinMode] = useState<WinMode>('first');
-  const [names, setNames] = useState<string[]>([
-    defaultPlayerName(0),
-    defaultPlayerName(1),
-    defaultPlayerName(2),
-  ]);
+  const [names, setNames] = useState<string[]>(() =>
+    Array.from({ length: 3 }, (_, i) => initialNames?.[i] ?? defaultPlayerName(i)),
+  );
 
   const setName = (i: number, value: string) =>
     setNames((prev) => prev.map((n, idx) => (idx === i ? value : n)));
 
   const start = () => {
     const trimmed = names.map((n, i) => n.trim() || defaultPlayerName(i));
-    onStart({ target, count, winMode, names: trimmed.slice(0, count) });
+    onStart({ target, count, winMode, names: trimmed });
   };
 
   return (

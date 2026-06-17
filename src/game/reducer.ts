@@ -55,10 +55,11 @@ export function gameReducer(state: AppState, action: Action): AppState {
     return {
       phase: 'playing',
       game: newGame(action.target, action.count, action.winMode, action.names),
+      names: action.names, // remember for the next game's setup
     };
   }
   if (action.type === 'RESET') {
-    return initialState;
+    return { ...initialState, names: state.names };
   }
 
   const game = state.game;

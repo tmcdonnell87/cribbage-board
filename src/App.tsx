@@ -23,6 +23,7 @@ export default function App() {
   if (state.phase === 'setup' || !state.game) {
     return (
       <SetupScreen
+        initialNames={state.names}
         onStart={({ target, count, winMode, names }) =>
           dispatch({ type: 'NEW_GAME', target, count, winMode, names })
         }
@@ -34,7 +35,7 @@ export default function App() {
 
   return (
     <div className={`app app-${layout}`}>
-      <Header game={game} onNewGame={() => dispatch({ type: 'RESET' })} />
+      <Header onNewGame={() => dispatch({ type: 'RESET' })} />
 
       <StatusBanner
         game={game}
