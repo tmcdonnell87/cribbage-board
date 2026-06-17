@@ -565,17 +565,20 @@ body:has(.app-desktop) {
 .app-desktop .control-dock {
   flex-direction: row;
   align-items: stretch;
-  gap: 14px;
+  gap: 22px;
   width: 100%;
-  max-width: 840px;
+  max-width: 860px;
   margin: 0 auto;
 }
 
-/* Player pills stack into a left-hand scoreboard column. */
+/* Player pills stack into a left-hand scoreboard column, divided from the
+   chip grid by a full-height rule so the two groups don't read as one. */
 .app-desktop .player-selector {
   flex: 0 0 220px;
   flex-direction: column;
   gap: 8px;
+  padding-right: 22px;
+  border-right: 1px solid var(--border);
 }
 
 .app-desktop .player-pill {
