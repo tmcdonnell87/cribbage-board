@@ -475,7 +475,7 @@ body:has(.app-desktop) {
 
 .quick-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 7px;
 }
 
@@ -495,6 +495,14 @@ body:has(.app-desktop) {
   background: var(--ink);
   color: #fff;
   border-color: var(--ink);
+}
+
+/* Relative adjuster — increments X rather than setting it. */
+.quick-add {
+  background: #f4ede0;
+  border: 1px dashed var(--wood);
+  color: var(--wood);
+  font-weight: 700;
 }
 
 .modal-actions {

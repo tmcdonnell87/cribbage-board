@@ -74,6 +74,14 @@ export default function CustomChipModal({ playerName, onConfirm, onClose }: Cust
               {n}
             </button>
           ))}
+          <button
+            type="button"
+            className="quick-chip quick-add"
+            aria-label="Add 5"
+            onClick={() => step(5)}
+          >
+            +5
+          </button>
         </div>
 
         <div className="modal-actions">
