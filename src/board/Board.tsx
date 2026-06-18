@@ -75,7 +75,11 @@ export default function Board({ game, layout }: BoardProps) {
       {players.map((pl, lane) => {
         const b = pegPos(pl.prev, lane);
         return (
-          <circle key={`bp-${lane}`} cx={b.x} cy={b.y} r={spec.trailR} fill={pl.color} opacity={0.38} />
+          <g key={`bp-${lane}`} opacity={0.6}>
+            <circle cx={b.x} cy={b.y + 1} r={spec.trailR} fill="rgba(40,20,0,0.28)" />
+            <circle cx={b.x} cy={b.y} r={spec.trailR} fill={pl.color} />
+            <circle cx={b.x - 1.2} cy={b.y - 1.4} r={1.4} fill="rgba(255,255,255,0.5)" />
+          </g>
         );
       })}
 
