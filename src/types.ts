@@ -31,10 +31,18 @@ export interface Game {
   decided: Decided | null; // set by End hand / first-across win
 }
 
+/** The choices made on the setup screen, remembered across new games. */
+export interface SetupConfig {
+  target: Target;
+  count: number;
+  winMode: WinMode;
+  names: string[];
+}
+
 export interface AppState {
   phase: Phase;
   game: Game | null;
-  names?: string[]; // last-used player names, remembered across new games
+  lastSetup?: SetupConfig; // last-used setup, defaulted into the next game's setup
 }
 
 /** Fixed, index-based player palette (spec Design Tokens). */

@@ -1,16 +1,9 @@
 import { useState } from 'react';
-import { Target, WinMode, PLAYER_COLORS, defaultPlayerName } from '../types';
-
-interface SetupConfig {
-  target: Target;
-  count: number;
-  winMode: WinMode;
-  names: string[];
-}
+import { Target, WinMode, SetupConfig, PLAYER_COLORS, defaultPlayerName } from '../types';
 
 interface SetupScreenProps {
   onStart: (config: SetupConfig) => void;
-  initialNames?: string[];
+  initial?: SetupConfig;
 }
 
 const WIN_HINT: Record<WinMode, string> = {
@@ -42,12 +35,12 @@ function Segmented<T extends string | number>({ options, value, onChange }: Segm
   );
 }
 
-export default function SetupScreen({ onStart, initialNames }: SetupScreenProps) {
-  const [target, setTarget] = useState<Target>(120);
-  const [count, setCount] = useState(2);
-  const [winMode, setWinMode] = useState<WinMode>('first');
+export default function SetupScreen({ onStart, initial }: SetupScreenProps) {
+  const [target, setTarget] = useState<Target>(initial?.target ?? 120);
+  const [count, setCount] = useState(initial?.count ?? 2);
+  const [winMode, setWinMode] = useState<WinMode>(initial?.winMode ?? 'first');
   const [names, setNames] = useState<string[]>(() =>
-    Array.from({ length: 3 }, (_, i) => initialNames?.[i] ?? defaultPlayerName(i)),
+    Array.from({ length: 3 }, (_, i) => initial?.names[i] ?? defaultPlayerName(i)),
   );
 
   const setName = (i: number, value: string) =>

@@ -23,7 +23,7 @@ export default function App() {
   if (state.phase === 'setup' || !state.game) {
     return (
       <SetupScreen
-        initialNames={state.names}
+        initial={state.lastSetup}
         onStart={({ target, count, winMode, names }) =>
           dispatch({ type: 'NEW_GAME', target, count, winMode, names })
         }
