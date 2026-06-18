@@ -22,7 +22,7 @@ export default function ChipGrid({ activeName, canUndo, onAdd, onUndo }: ChipGri
           <button
             type="button"
             key={amt}
-            className={`chip${amt === 1 ? ' chip-primary' : ''}`}
+            className="chip"
             onClick={() => onAdd(amt)}
           >
             +{amt}

@@ -355,14 +355,6 @@ body:has(.app-desktop) {
   color: #3a342c;
 }
 
-.chip-primary {
-  background: var(--ink);
-  color: #fff;
-  border: none;
-  font-size: 19px;
-  font-weight: 700;
-}
-
 .chip-undo {
   font-family: var(--ui);
   font-size: 18px;
